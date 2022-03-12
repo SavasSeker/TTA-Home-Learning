@@ -1,0 +1,77 @@
+CREATE DATABASE Employees;
+
+create table Employee_Informations (
+  	Employee_ID int,
+    Employee_Name varchar(40),
+    Employee_Title enum('Mr','Ms','Mrs','Dr','Lord'),
+    Employee_Age int,
+    Employee_Salary bigint,
+  	PRIMARY KEY (Employee_ID),
+	UNIQUE (Employee_ID),
+);
+insert into Employee_Informations (Employee_ID, Employee_Name, Employee_Title, Employee_Age, Employee_Salary)
+values 	(01, "Rachel", "Mrs", 21, 25000),
+		(02, "Leonardo", "Mr", 35, 35000),
+		(03, "Rick", "Mr", 33, 27000),
+		(04, "Dan", "Mr", 39, 55000),
+		(05, "Chelsea", "Ms", 41, 35000),
+		(06, "Rose", "Mrs", 31, 25000),
+
+create table Customer_Details (
+  Customer_ID int,
+  Customer_Name varchar(20),
+  Customer_LastName varchar(50)
+  Customer_Purhase varchar(50),
+  Customer_Age int,
+  PRIMARY KEY (Customer_ID),
+  UNIQUE (Customer_ID)
+);
+insert into Customer_Details(Customer_ID, Customer_Name, Customer_LastName, Customer_Purhase, Customer_Age)
+values	(1,"Zane","Dawson","watch", 27),
+		(2,"Ali","Sucu","Lamb", 23),    
+        (3,"Kat","Zak","Printer", 25),
+        (4,"Mel","Bulsen","Bottle", 25),
+		(5,"Chris","Robin","Shoes", 19),
+        (6,"Carl","Bold","TV", 45),
+        (7,"Jamie","Little","Phone", 35,),
+        (8,"Jane","love","Book", 20),
+        (9,"Jess","Aldous","Laptop", 21),
+        (10,"Jack","Stuart","Pen", 25),
+		(11,"Richard","Rich","Jacket", 29);
+        
+
+EXPLAIN Employee_Informations;
+
+
+EXPLAIN Customer_Details;
+
+
+Update Customer_Details
+set Customer_Purhase = "Computer"
+where Customer_ID = "1";
+
+
+SELECT * FROM Employee_Informations; 
+
+SELECT * FROM Customer_Details;
+
+delete from Employee_Informations where Employee_ID = 01;
+
+
+SELECT Employee_Informations.Employee_ID,Employee_Informations.Employee_Name,Customer_Details.Customer_Purhase, Customer_Details.Customer_ID
+FROM Employee_Informations 
+Left JOIN Customer_Details
+ON Employee_Informations.Employee_ID=Customer_Details.Employee_ID;
+
+
+SELECT * FROM Customer_Details; 
+
+
+Select * from Customer_Details where Customer_Age >25;
+
+
+SELECT Employee_Informations.Employee_ID,Employee_Informations.Employee_Name,Customer_Details.Customer_Purhase 
+FROM Employee_Informations 
+Left JOIN Customer_Details
+ON Employee_Informations.Employee_ID=Customer_Details.Customer_ID
+where  Customer_Details.Customer_Age > 30;
